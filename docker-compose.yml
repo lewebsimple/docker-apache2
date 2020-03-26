@@ -1,0 +1,27 @@
+version: '3.7'
+
+services:
+
+  # Apache2
+  apache2:
+    build: .
+    container_name: apache2
+    hostname: apache2.${TLD-local}
+    restart: always
+    environment:
+      - TZ=${TZ-America/Toronto}
+    environment:
+      - APACHE2_TLD=${TLD-local}
+      - APACHE2_MSMTP_HOST=${APACHE2_MSMTP_HOST}
+      - APACHE2_MSMTP_FROM=${APACHE2_MSMTP_FROM}
+      - VIRTUAL_HOST=*.${TLD-local}
+    volumes:
+      - ${DATA-./data}/apache2/conf-extra:/etc/apache2/conf-extra
+      - ${DATA-./data}/apache2/html:/var/www/html
+      - ${DATA-./data}/apache2/tmp:/tmp
+
+networks:
+
+  default:
+    external: true
+    name: proxy
