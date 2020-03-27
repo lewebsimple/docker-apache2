@@ -12,6 +12,7 @@ services:
       - TZ=${TZ-America/Toronto}
     environment:
       - APACHE2_TLD=${TLD-local}
+      - APACHE2_ENABLE_XDEBUG=${APACHE2_ENABLE_XDEBUG-yes}
       - APACHE2_MSMTP_HOST=${APACHE2_MSMTP_HOST}
       - APACHE2_MSMTP_FROM=${APACHE2_MSMTP_FROM}
       - VIRTUAL_HOST=*.${TLD-local}
