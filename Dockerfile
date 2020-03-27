@@ -61,6 +61,11 @@ RUN set -ex \
   # Generate fr_CA locale
   && locale-gen fr_CA.utf8
 
+# Install NPM packages
+RUN npm i -g \
+  mammoth \
+  yarn
+
 VOLUME ["/etc/apache2/conf-extra","/var/www/html","/tmp"]
 WORKDIR /var/www/html
 
