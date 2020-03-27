@@ -18,8 +18,8 @@ services:
       - VIRTUAL_HOST=*.${TLD-local}
     volumes:
       - ${DATA-./data}/apache2/conf-extra:/etc/apache2/conf-extra
-      - ${DATA-./data}/apache2/html:/var/www/html
       - ${DATA-./data}/apache2/tmp:/tmp
+      - ${WWW-./www}/html:/var/www/html
 
 networks:
 
