@@ -5,13 +5,14 @@ LABEL maintainer "Pascal Martineau <pascal@lewebsimple.ca>"
 ENV APACHE2_UID 1000
 ENV APACHE2_GID 1000
 
-# Install Apache2
+# Install Apache2 and useful libraries
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
   apache2 \
   msmtp \
   apt-transport-https build-essential ca-certificates gnupg software-properties-common \
   curl git imagemagick less iputils-ping nano openssh-client rsync wget \
   language-pack-fr-base tzdata \
+  ffmpeg \
   && rm -rf /var/lib/apt/lists/*
 
 # Install PHP
@@ -22,8 +23,8 @@ RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu bionic main" > /etc/apt
   php php-cli php-curl php-dev php-gd php-intl php-mbstring php-mysql php-pear php-xdebug php-xml php-zip \
   && rm -rf /var/lib/apt/lists/*
 
-# Install Node.js 13.x
-RUN curl -sL https://deb.nodesource.com/setup_13.x | bash - \
+# Install Node.js 14.x
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - \
   && apt-get install -y nodejs \
   && rm -rf /var/lib/apt/lists/*
 
