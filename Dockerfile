@@ -38,7 +38,7 @@ RUN set -ex \
   # Enable Apache2 configurations
   && a2enconf fqdn conf-extra \
   # Enable Apache2 modules
-  && a2enmod expires headers rewrite vhost_alias \
+  && a2enmod expires headers remoteip rewrite vhost_alias \
   # Enable Apache2 vhosts
   && a2ensite vhosts \
   && apache2ctl graceful \
