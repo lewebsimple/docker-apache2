@@ -15,7 +15,8 @@ services:
       - APACHE2_ENABLE_XDEBUG=${APACHE2_ENABLE_XDEBUG-yes}
       - APACHE2_MSMTP_HOST=${APACHE2_MSMTP_HOST}
       - APACHE2_MSMTP_FROM=${APACHE2_MSMTP_FROM}
-      - VIRTUAL_HOST=*.${TLD-local}
+      - VIRTUAL_HOST=*.${TLD-local},${LETSENCRYPT_HOST}
+      - LETSENCRYPT_HOST=${LETSENCRYPT_HOST}
     volumes:
       - ${DATA-./data}/apache2/conf-extra:/etc/apache2/conf-extra
       - ${DATA-./data}/apache2/tmp:/tmp
