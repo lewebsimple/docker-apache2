@@ -22,6 +22,26 @@ services:
       - ${DATA-./data}/apache2/tmp:/tmp
       - ${WWW-./www}/html:/var/www/html
 
+  apache2-php56:
+    build:
+      context: .
+      dockerfile: Dockerfile-php56
+    container_name: apache2-php56
+    hostname: apache2-php56.${TLD-local}
+    restart: always
+    environment:
+      - TZ=${TZ-America/Toronto}
+    environment:
+      - APACHE2_TLD=php56
+      - APACHE2_ENABLE_XDEBUG=${APACHE2_ENABLE_XDEBUG-yes}
+      - APACHE2_MSMTP_HOST=${APACHE2_MSMTP_HOST}
+      - APACHE2_MSMTP_FROM=${APACHE2_MSMTP_FROM}
+      - VIRTUAL_HOST=*.php56
+    volumes:
+      - ${DATA-./data}/apache2-php56/conf-extra:/etc/apache2/conf-extra
+      - ${DATA-./data}/apache2-php56/tmp:/tmp
+      - ${WWW-./www}/html:/var/www/html
+
 networks:
 
   default:
