@@ -49,6 +49,8 @@ RUN set -ex \
   # Output error log to stderr
   && ln -sfT /dev/stderr "${APACHE_LOG_DIR}/error.log" \
   && ln -sfT /dev/stdout "${APACHE_LOG_DIR}/access.log" \
+  # Install Xdebug with pecl
+  && pecl install xdebug-2.9.8 \
   # Create Xdebug directory
   && mkdir -p /tmp/xdebug \
   # Change UID/GID of www-data to match local user

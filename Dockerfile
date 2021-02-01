@@ -20,7 +20,7 @@ RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu bionic main" > /etc/apt
   && echo "deb-src http://ppa.launchpad.net/ondrej/php/ubuntu bionic main" >> /etc/apt/sources.list.d/ondrej-php-xenial.list \
   && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E5267A6C \
   && apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-  php php-cli php-curl php-dev php-gd php-intl php-mbstring php-mysql php-pear php-xdebug php-xml php-zip \
+  php7.4 php7.4-cli php7.4-curl php7.4-dev php7.4-gd php7.4-intl php7.4-mbstring php7.4-mysql php-pear php7.4-xdebug php7.4-xml php7.4-zip \
   && rm -rf /var/lib/apt/lists/*
 
 # Install Node.js 14.x
@@ -50,7 +50,7 @@ RUN set -ex \
   && ln -sfT /dev/stderr "${APACHE_LOG_DIR}/error.log" \
   && ln -sfT /dev/stdout "${APACHE_LOG_DIR}/access.log" \
   # Install Xdebug with pecl
-  && pecl install xdebug \
+  && pecl install xdebug-2.9.8 \
   # Create Xdebug directory
   && mkdir -p /tmp/xdebug \
   # Change UID/GID of www-data to match local user
