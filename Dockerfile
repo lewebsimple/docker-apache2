@@ -16,9 +16,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-ins
   && rm -rf /var/lib/apt/lists/*
 
 # Install PHP
-RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu bionic main" > /etc/apt/sources.list.d/ondrej-php-xenial.list \
-  && echo "deb-src http://ppa.launchpad.net/ondrej/php/ubuntu bionic main" >> /etc/apt/sources.list.d/ondrej-php-xenial.list \
-  && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E5267A6C \
+RUN add-apt-repository ppa:ondrej/php \
   && apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
   php7.4 php7.4-cli php7.4-curl php7.4-dev php7.4-gd php7.4-intl php7.4-mbstring php7.4-mysql php-pear php7.4-xdebug php7.4-xml php7.4-zip \
   && rm -rf /var/lib/apt/lists/*
