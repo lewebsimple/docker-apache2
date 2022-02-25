@@ -17,6 +17,8 @@ services:
       - APACHE2_MSMTP_FROM=${APACHE2_MSMTP_FROM}
       - VIRTUAL_HOST=*.${TLD-local},${LETSENCRYPT_HOST}
       - LETSENCRYPT_HOST=${LETSENCRYPT_HOST}
+    extra_hosts:
+      - "nextcloud.ledevsimple.ca:192.168.1.150"
     volumes:
       - ${DATA-./data}/apache2/conf-extra:/etc/apache2/conf-extra
       - ${DATA-./data}/apache2/tmp:/tmp
