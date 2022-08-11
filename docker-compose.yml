@@ -13,6 +13,7 @@ services:
       - APACHE2_MSMTP_HOST=${APACHE2_MSMTP_HOST}
       - APACHE2_MSMTP_FROM=${APACHE2_MSMTP_FROM}
       - TZ=${TZ-America/Toronto}
+      - HTTPS_METHOD=noredirect
       - VIRTUAL_HOST=*.${TLD-local},${LETSENCRYPT_HOST}
       - LETSENCRYPT_HOST=${LETSENCRYPT_HOST}
     extra_hosts:
