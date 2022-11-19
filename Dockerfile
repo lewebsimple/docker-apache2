@@ -1,4 +1,4 @@
-FROM ubuntu:bionic
+FROM ubuntu:jammy
 LABEL maintainer "Pascal Martineau <pascal@lewebsimple.ca>"
 
 # Default Apache2 UID / GID
@@ -15,14 +15,14 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-ins
   ffmpeg \
   && rm -rf /var/lib/apt/lists/*
 
-# Install PHP
+# Install PHP 8.1
 RUN add-apt-repository ppa:ondrej/php \
   && apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-  php7.4 php7.4-cli php7.4-curl php7.4-dev php7.4-gd php7.4-intl php7.4-mbstring php7.4-mysql php-pear php7.4-xdebug php7.4-xml php7.4-zip \
+  php8.1 php8.1-cli php8.1-curl php8.1-dev php8.1-gd php8.1-intl php8.1-mbstring php8.1-mysql php-pear php8.1-xdebug php8.1-xml php8.1-zip \
   && rm -rf /var/lib/apt/lists/*
 
-# Install Node.js 14.x
-RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - \
+# Install Node.js 18.x
+RUN curl -sL https://deb.nodesource.com/setup_18.x | bash - \
   && apt-get install -y nodejs \
   && rm -rf /var/lib/apt/lists/*
 
@@ -47,8 +47,6 @@ RUN set -ex \
   # Output error log to stderr
   && ln -sfT /dev/stderr "${APACHE_LOG_DIR}/error.log" \
   && ln -sfT /dev/stdout "${APACHE_LOG_DIR}/access.log" \
-  # Install Xdebug with pecl
-  && pecl install xdebug-2.9.8 \
   # Create Xdebug directory
   && mkdir -p /tmp/xdebug \
   # Change UID/GID of www-data to match local user
@@ -62,7 +60,7 @@ RUN set -ex \
 
 # Install NPM packages
 RUN npm i -g \
-  mammoth \
+  pnpm \
   yarn
 
 VOLUME ["/etc/apache2/conf-extra","/var/www/html","/tmp"]
